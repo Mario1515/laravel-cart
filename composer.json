@@ -3,7 +3,8 @@
     "description": "A Laravel Package that includes an Ecommerce Cart",
     "type": "library",
     "require": {
-        "illuminate/support": "^11.0"
+        "illuminate/support": "^11.46",
+        "illuminate/database": "^11.46"
     },
     "license": "MIT",
     "autoload": {
@@ -11,5 +12,15 @@
             "Mario1515\\LaravelCart\\": "src/"
         }
     },
-    "minimum-stability": "stable"
+    "minimum-stability": "stable",
+    "extra": {
+    "laravel": {
+            "providers": [
+                "Mario1515\\LaravelCart\\LaravelCartServiceProvider"
+            ],
+            "aliases": {
+                "Cart": "Mario1515\\LaravelCart\\Facades\\Cart"
+            }
+        }
+    }
 }
