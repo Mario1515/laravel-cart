@@ -22,8 +22,8 @@ class Cart extends Model
         return $this->hasMany(CartItem::class);
     }
 
-    public function personalData(): HasOne
+    public function personalData(): BelongsTo
     {
-        return $this->hasOne(CartPersonalData::class);
+        return $this->belongsTo(CartPersonalData::class);
     }
 }

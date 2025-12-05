@@ -15,8 +15,8 @@ class CartPersonalData extends Model
         'payload' => 'array',
     ];
 
-    public function cart(): BelongsTo
+    public function cart(): HasOne
     {
-        return $this->belongsTo(Cart::class);
+        return $this->hasOne(Cart::class, 'cart_personal_data_id');
     }
 }
