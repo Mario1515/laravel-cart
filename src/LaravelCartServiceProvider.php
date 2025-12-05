@@ -11,17 +11,17 @@ class LaravelCartServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        // Repository binding
+        //bind repo
         $this->app->singleton(CartRepository::class, fn () => new CartRepository());
 
-        // Service binding
+        //bind service
         $this->app->singleton(CartService::class, function ($app) {
             return new CartService(
                 $app->make(CartRepository::class)
             );
         });
 
-        // Manager binding (Facade target)
+        //bind manager
         $this->app->singleton('laravel-cart', function ($app) {
             return new CartManager(
                 $app->make(CartService::class)
@@ -39,6 +39,9 @@ class LaravelCartServiceProvider extends ServiceProvider
                 __DIR__ . '/../database/migrations' =>
                     $this->app->databasePath('migrations'),
             ], 'laravel-cart-migrations');
+
+            //escape name collision Vladi will show me how. 
+            //sleep 1 to avoid name collisions
         }
     }
 }
