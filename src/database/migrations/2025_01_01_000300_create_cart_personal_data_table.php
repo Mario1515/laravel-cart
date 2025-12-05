@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Mario1515\LaravelCart\Models\Cart;
 
 return new class extends Migration
 {
@@ -10,6 +11,11 @@ return new class extends Migration
     {
         Schema::create('cart_personal_data', function (Blueprint $table): void {
             $table->id();
+
+            $table->foreignIdFor(Cart::class)
+                ->nullable()
+                ->constrained()
+                ->cascadeOnDelete();
 
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();

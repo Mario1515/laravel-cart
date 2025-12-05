@@ -5,7 +5,6 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 use Mario1515\LaravelCart\Enums\CartStatus;
-use Mario1515\LaravelCart\Models\CartPersonalData;
 
 return new class extends Migration
 {
@@ -15,11 +14,6 @@ return new class extends Migration
             $table->id();
 
             $table->string('session_id')->unique();
-
-            $table->foreignIdFor(CartPersonalData::class)
-                ->nullable()
-                ->constrained()
-                ->cascadeOnDelete();
 
             $table->enum('status', array_column(CartStatus::cases(), 'value'))
                 ->default(CartStatus::OPEN->value)
